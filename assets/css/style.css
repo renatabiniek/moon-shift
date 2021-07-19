@@ -1,3 +1,13 @@
+/*import selected fonts from Google Fonts*/
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat+Alternates&family=Raleway&display=swap'); 
+
 body { 
     background-color: rgb(15, 15, 48);
+    font-family: Raleway, sans-serif;
+    color: white;
+}
+
+#logo {
+    font-family: Montserrat Alternates, sans-serif;
 }
