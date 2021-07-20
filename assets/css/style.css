@@ -4,6 +4,7 @@
 
 /*remove default margin, padding, border and box sizing*/
 
+
 * {
     margin: 0;
     padding: 0;
@@ -35,7 +36,7 @@ a {
 /*style icons*/
 
 i {
-    font-size: 1.3rem;
+    font-size: 1.5rem;
     padding: 0.5rem;
 }
 
@@ -57,12 +58,17 @@ i {
     padding: 0.5rem;
 }
 
+#page-container {
+    position: relative;
+    min-height: 100vh;
+}
 /*style main section*/
 
 .main {
     width: 80%;
     margin: auto;
     text-align: center;
+    padding-bottom: 10rem;
 }
 
 /*styling for page header with flex box*/
@@ -85,6 +91,7 @@ i {
     display: block;
     font-size: 4rem;
     font-weight: bolder;
+    height: 80%
 }
 
 #timer > * {
@@ -93,4 +100,21 @@ i {
 
 #timer {
     margin-top: 2rem;
+}
+
+footer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 10rem;
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    padding-bottom: 0.5rem;
+    line-height: 1.2rem;
+}
+
+footer > p {
+    font-size: 0.8rem;
 }
