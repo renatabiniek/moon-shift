@@ -41,9 +41,22 @@ i {
     padding: 0.5rem;
 }
 
-i:hover {
+/*code to make icons glow on hover taken and adapted from https://www.w3schools.com/howto/howto_css_glowing_text.asp*/
+
+.glow:hover {
     font-size: 2rem;
+    animation: glow 1s ease-in-out infinite alternate;
 }
+
+@-webkit-keyframes glow {
+    from {
+      text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px gold, 0 0 40px gold, 0 0 50px gold, 0 0 60px gold, 0 0 70px gold;
+    }
+    to {
+      text-shadow: 0 0 20px #fff, 0 0 30px rgb(231, 225, 189), 0 0 40px rgb(231, 225, 189), 0 0 50px rgb(231, 225, 189), 0 0 60px rgb(231, 225, 189), 0 0 70px rgb(231, 225, 189), 0 0 80px #rgb(231, 225, 189);
+    }
+  }
+
 /*style buttons*/
 
 .btn {
@@ -52,8 +65,13 @@ i:hover {
     color: rgb(15, 15, 48);
     padding: 0.5rem;
     margin: 0.5rem;
+    font-family: inherit;
     font-weight: bolder;
     font-size: 1.3rem;
+}
+
+.btn:hover {
+    font-size: 1.5rem;
 }
 
 /*style h2 headers*/
