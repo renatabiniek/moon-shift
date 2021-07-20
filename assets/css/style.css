@@ -2,6 +2,17 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Montserrat+Alternates&family=Raleway&display=swap'); 
 
+/*remove default margin, padding, border and box sizing*/
+
+* {
+    margin: 0;
+    padding: 0;
+    border: none;
+    box-sizing: border-box;
+}
+
+/*add styling for body*/
+
 body { 
     background-color: rgb(15, 15, 48);
     font-family: Raleway, sans-serif;
