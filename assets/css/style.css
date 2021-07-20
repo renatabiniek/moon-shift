@@ -59,6 +59,11 @@ i {
 
 /*style buttons*/
 
+hr {
+    border: solid 1px white; 
+    width: 20%;
+}
+
 .btn {
     background: white;
     border-radius: 0.2rem;
