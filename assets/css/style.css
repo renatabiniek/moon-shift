@@ -49,6 +49,14 @@ i {
     font-weight: bolder;
 }
 
+/*style main section*/
+
+.main {
+    width: 80%;
+    margin: auto;
+    text-align: center;
+}
+
 /*styling for page header with flex box*/
 
 .page-header {
