@@ -59,11 +59,6 @@ i {
 
 /*style buttons*/
 
-hr {
-    border: solid 1px white; 
-    width: 20%;
-}
-
 .btn {
     background: white;
     border-radius: 5px;
@@ -129,12 +124,19 @@ hr {
     padding-top: 5rem;
 }
 
+.modal p, li {
+    line-height: 1.5rem;
+    /*remove number from the list of items but keep the order*/
+    list-style-type: none;
+}
 .modal-content {
     background-color: rgb(16,46,74);
     padding: 2rem;
     width: 50%;
     margin: auto;
     border-radius: 5px;
+    list-style-position: inside;
+    font-size: .8rem;
 }
 
 .close-modal {
@@ -149,6 +151,13 @@ hr {
     font-size: 2.3rem;
 }
 
+.modal-header {
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    line-height: 2rem;
+}
+
+/*TIMER SECTION*/
 #countdown {
     display: block;
     font-size: 4rem;
