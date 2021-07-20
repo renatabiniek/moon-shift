@@ -11,14 +11,36 @@
     box-sizing: border-box;
 }
 
-/*add styling for body*/
+/*add styling for body with font size 62.5% to allow 1rem = 10px*/
 
 body { 
     background-color: rgb(15, 15, 48);
     font-family: Raleway, sans-serif;
     color: white;
+    font-size: 62.5%;
+}
+
+/*remove list style and text decoration from all list items and links*/
+
+ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+}
+
+a {
+    text-decoration: none;
+}
+
+/*styling for page header with flex box*/
+
+.page-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
 }
 
 #logo {
     font-family: Montserrat Alternates, sans-serif;
+    font-size: 200%;
 }
