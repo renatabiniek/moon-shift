@@ -38,7 +38,13 @@ a {
 
 i {
     font-size: 1.5rem;
-    padding: 0.5rem;
+    padding: .5rem;
+}
+
+.icon-sml {
+    font-size: .8rem;
+    padding: 0 .8rem;
+
 }
 
 /*code to make icons glow on hover taken and adapted from https://www.w3schools.com/howto/howto_css_glowing_text.asp*/
@@ -128,7 +134,9 @@ i {
     line-height: 1.5rem;
     /*remove number from the list of items but keep the order*/
     list-style-type: none;
+    padding: 0 .8rem;
 }
+
 .modal-content {
     background-color: rgb(16,46,74);
     padding: 2rem;
