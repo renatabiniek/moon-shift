@@ -70,15 +70,15 @@
     <section id="timer">
          <!--buttons to switch the timer mode-->
          <div>
-             <button class="btn">Focus</button>
-             <button class="btn">Break</button>
-             <button class="btn">Long Break</button>
+             <button data-mode="1500" class="btn mode">Focus</button>
+             <button data-mode="300" class="btn mode">Break</button>
+             <button data-mode="900" class="btn mode">Long Break</button>
          </div>
-        <span class="tasks">What are you working on?</span>
+        <span class="tasks" id="display-task">Time to work!</span>
         <div id="countdown">00:00</div>
-        <button class="btn timer-btn"><i class="fas fa-play icon-sml"></i></button>
-        <button class="btn timer-btn"><i class="fas fa-pause icon-sml"></i></button>
-        <button class="btn timer-btn"><i class="fas fa-history icon-sml"></i></button>
+        <button data-status="start" class="btn timer-btn"><i class="fas fa-play icon-sml"></i></button>
+        <button data-status="stop" class="btn timer-btn"><i class="fas fa-pause icon-sml"></i></button>
+        <button data-status="reset" class="btn timer-btn"><i class="fas fa-history icon-sml"></i></button>
     </section>
 
      <!--TODO SECTION-->
