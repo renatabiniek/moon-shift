@@ -80,6 +80,10 @@ i {
     font-size: 2em;
 }
 
+.timer-btn {
+    width: 3rem;
+}
+
 /*style h2 headers*/
 .header {
     font-family: Montserrat Alternates, sans-serif;
@@ -168,11 +172,20 @@ i {
 }
 
 /*TIMER SECTION*/
+
+.tasks {
+    text-transform: capitalize;
+    font-size: 2em;
+}
+
 #countdown {
     display: block;
     font-size: 4rem;
     font-weight: bolder;
-    height: 80%
+    height: 250px;
+    width: 250px;
+    margin: auto;
+    padding-top: 90px;
 }
 
 #timer > * {
