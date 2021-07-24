@@ -5,17 +5,27 @@
  */
 
 document.addEventListener("DOMContentLoaded", function() {
-    console.log("Page loaded")
+    let minutes = 25;
+    //display leading 0 for correct time format
+    let seconds = "0"+0;
+    document.getElementById("countdown-min").innerHTML = minutes;
+    document.getElementById("countdown-sec").innerHTML = seconds;
 })
 
+// timer functions
 
-// timer
-
-
-function startTimer(seconds) {
-    const now = Date.now(); 
-    console.log(now);
+function startTimer() {
+    
 }
+
+function stopTimer() {
+
+}
+
+function resetTimer() {
+
+}
+
 
 
 //functions for modals
