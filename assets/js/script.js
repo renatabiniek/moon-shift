@@ -12,6 +12,23 @@ document.addEventListener("DOMContentLoaded", function() {
     document.getElementById("countdown-sec").innerHTML = seconds;
 })
 
+//add event listeners for mode buttons 
+
+let modes = document.getElementsByClassName("mode");
+    
+    for (let mode of modes){
+        mode.addEventListener("click", function() {
+            if (this.getAttribute("data-mode") === "1500") {
+                alert("Time to work");
+            } else if (this.getAttribute("data-mode") === "300") {
+                alert("Take a short break!");
+            } else {
+                alert("Take a longer break!")
+            }
+        })
+    };
+
+
 // timer functions
 
 function startTimer() {
