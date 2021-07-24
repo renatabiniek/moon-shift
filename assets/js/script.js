@@ -1,3 +1,23 @@
+
+/**
+ * Wait for DOM to load
+ * and display Work timer mode of 25 mins as a default 
+ */
+
+document.addEventListener("DOMContentLoaded", function() {
+    console.log("Page loaded")
+})
+
+
+// timer
+
+
+function startTimer(seconds) {
+    const now = Date.now(); 
+    console.log(now);
+}
+
+
 //functions for modals
 
 //when user clicks on "?" button, open the modal with instructions
