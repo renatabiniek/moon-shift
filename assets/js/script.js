@@ -6,8 +6,11 @@
 let minutes = 25;
 let seconds = 0;
 
+let displayMins = document.getElementById("countdown-mins");
+let displaySecs = document.getElementById("countdown-secs");
+
 document.addEventListener("DOMContentLoaded", function() {
-   
+    
 })
 
 //add event listeners for mode buttons 
@@ -35,11 +38,10 @@ start.addEventListener("click", startFocusing);
 
 
 function startFocusing() {
-    minutes = 1;
-    let timeDisplay = document.getElementById("countdown-clock");
-    
-    let interval = setInterval(function() {
+let minutes = 25;
 
+    let interval = setInterval(function() {
+        
         if (minutes == 0 && seconds == 0) {
             clearInterval(interval);
             alert("Take a break!");
@@ -48,20 +50,25 @@ function startFocusing() {
         } else if (seconds == 0) {
             minutes = minutes - 1;
             seconds = 59;
-            let timeFormat = minutes + " : " + seconds;
-            timeDisplay.innerHTML = timeFormat;
-            document.title = timeFormat;
+            displayMins.innerHTML = minutes;
+            //add leading zeros to numbers that only are one digit long
+            displaySecs.innerHTML = seconds < 10 ? "0" + seconds : seconds;
+            //display current time in the browser tab
+            let currentTime = `${minutes} : ${seconds < 10 ? "0" + seconds : seconds}`;
+            document.title = currentTime;
 
         } else if (seconds != 0) {
             seconds = seconds - 1;
-            let timeFormat = minutes + " : " + seconds;
-            timeDisplay.innerHTML = timeFormat;
-            document.title = timeFormat;
-        }
+            displayMins.innerHTML = minutes;
+            //add leading zeros to numbers that only are one digit long
+            displaySecs.innerHTML = seconds < 10 ? "0" + seconds : seconds;
+            //display current time in the browser tab
+            let currentTime = `${minutes} : ${seconds < 10 ? "0" + seconds : seconds}`;
+            document.title = currentTime;     
+        } 
 
     }, 1000);
 }
-
 
 function stopTimer() {
 
