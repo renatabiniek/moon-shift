@@ -5,9 +5,8 @@
  */
 
 document.addEventListener("DOMContentLoaded", function() {
-    let minutes = 25;
-    //display leading 0 for correct time format
-    let seconds = "0"+0;
+    let minutes = 1500 / 60;
+    let seconds = 00;
     document.getElementById("countdown-min").innerHTML = minutes;
     document.getElementById("countdown-sec").innerHTML = seconds;
 })
@@ -20,20 +19,38 @@ let modes = document.getElementsByClassName("mode");
         mode.addEventListener("click", function() {
             if (this.getAttribute("data-mode") === "1500") {
                 alert("Time to work");
+                startTimer(10);
             } else if (this.getAttribute("data-mode") === "300") {
                 alert("Take a short break!");
             } else {
                 alert("Take a longer break!")
             }
         })
-    };
 
+    };
 
 // timer functions
 
-function startTimer() {
-    
+let timer;
+
+function startTimer(seconds) {
+    //get current time stamp and add a number of seconds converted into miliseconds
+    const now = Date.now();
+    const then = now + seconds * 1000;
+
+    //count down every second
+
+    timer = setInterval(function() {
+        const remainingSeconds = Math.floor((then - Date.now()) / 1000);
+        console.log(remainingSeconds);
+    //stop if seconds get to zero    
+        if (remainingSeconds <= 0) {
+            clearInterval(timer);
+        }
+    }, 1000);
+
 }
+
 
 function stopTimer() {
 
