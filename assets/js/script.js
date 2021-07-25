@@ -3,12 +3,11 @@
  * Wait for DOM to load
  * and display Work timer mode of 25 mins as a default 
  */
+let minutes;
+let seconds;
 
 document.addEventListener("DOMContentLoaded", function() {
-    let minutes = 1500 / 60;
-    let seconds = 00;
-    document.getElementById("countdown-min").innerHTML = minutes;
-    document.getElementById("countdown-sec").innerHTML = seconds;
+   
 })
 
 //add event listeners for mode buttons 
@@ -19,7 +18,6 @@ let modes = document.getElementsByClassName("mode");
         mode.addEventListener("click", function() {
             if (this.getAttribute("data-mode") === "1500") {
                 alert("Time to work");
-                startTimer(10);
             } else if (this.getAttribute("data-mode") === "300") {
                 alert("Take a short break!");
             } else {
@@ -31,26 +29,27 @@ let modes = document.getElementsByClassName("mode");
 
 // timer functions
 
-let timer;
-
-function startTimer(seconds) {
-    //get current time stamp and add a number of seconds converted into miliseconds
-    const now = Date.now();
-    const then = now + seconds * 1000;
-
-    //count down every second
-
-    timer = setInterval(function() {
-        const remainingSeconds = Math.floor((then - Date.now()) / 1000);
-        console.log(remainingSeconds);
-    //stop if seconds get to zero    
-        if (remainingSeconds <= 0) {
-            clearInterval(timer);
+function startFocusing() {
+    minutes = 25;
+    seconds = 0;
+    
+    let interval = setInterval(function() {
+        let timeDisplay = document.getElementById("countdown-clock");
+        if (seconds == 0) {
+            minutes = minutes - 1;
+            seconds = 59;
+            timeDisplay.innerHTML = minutes + " : " + seconds;
+        } else if (seconds != 0) {
+            seconds = seconds - 1;
+            timeDisplay.innerHTML = minutes + " : " + seconds;
         }
     }, 1000);
 
 }
 
+//start the focusing session on click of start button
+let start = document.getElementById('start-btn');
+start.onclick = function() {startFocusing()};
 
 function stopTimer() {
 
