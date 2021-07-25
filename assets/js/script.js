@@ -7,8 +7,14 @@ let minutes = 25;
 let seconds = 0;
 
 document.addEventListener("DOMContentLoaded", function() {
-   
+    
 })
+
+//add leading zeros to numbers that only are one digit long
+
+function addLeadingZeros(seconds) {
+    return (seconds < 10) ? "0" + seconds : seconds;
+}
 
 //add event listeners for mode buttons 
 
@@ -35,11 +41,13 @@ start.addEventListener("click", startFocusing);
 
 
 function startFocusing() {
-    minutes = 1;
-    let timeDisplay = document.getElementById("countdown-clock");
-    
-    let interval = setInterval(function() {
+let minutes = 0;
+let seconds = 4;
 
+    let timeDisplay = document.getElementById("countdown-clock");
+
+    let interval = setInterval(function() {
+        
         if (minutes == 0 && seconds == 0) {
             clearInterval(interval);
             alert("Take a break!");
@@ -56,10 +64,11 @@ function startFocusing() {
             seconds = seconds - 1;
             let timeFormat = minutes + " : " + seconds;
             timeDisplay.innerHTML = timeFormat;
-            document.title = timeFormat;
-        }
+            document.title = timeFormat;       
+        } 
 
     }, 1000);
+   
 }
 
 
