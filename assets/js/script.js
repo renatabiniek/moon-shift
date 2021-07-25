@@ -29,12 +29,19 @@ let modes = document.getElementsByClassName("mode");
 
 // timer functions
 
+//start the focusing session on click of start button
+let start = document.getElementById("start-btn");
+start.addEventListener("click", startFocusing);
+
+
 function startFocusing() {
     minutes = 25;
     seconds = 0;
+
+    let timeDisplay = document.getElementById("countdown-clock");
     
     let interval = setInterval(function() {
-        let timeDisplay = document.getElementById("countdown-clock");
+    
         if (seconds == 0) {
             minutes = minutes - 1;
             seconds = 59;
@@ -43,13 +50,11 @@ function startFocusing() {
             seconds = seconds - 1;
             timeDisplay.innerHTML = minutes + " : " + seconds;
         }
+
     }, 1000);
 
 }
 
-//start the focusing session on click of start button
-let start = document.getElementById('start-btn');
-start.onclick = function() {startFocusing()};
 
 function stopTimer() {
 
@@ -58,7 +63,6 @@ function stopTimer() {
 function resetTimer() {
 
 }
-
 
 
 //functions for modals
