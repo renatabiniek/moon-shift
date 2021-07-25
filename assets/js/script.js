@@ -39,20 +39,27 @@ function startFocusing() {
     let timeDisplay = document.getElementById("countdown-clock");
     
     let interval = setInterval(function() {
+
         if (minutes == 0 && seconds == 0) {
             clearInterval(interval);
             alert("Take a break!");
+            document.title = "Take a break!";
+
         } else if (seconds == 0) {
             minutes = minutes - 1;
             seconds = 59;
-            timeDisplay.innerHTML = minutes + " : " + seconds;
+            let timeFormat = minutes + " : " + seconds;
+            timeDisplay.innerHTML = timeFormat;
+            document.title = timeFormat;
+
         } else if (seconds != 0) {
             seconds = seconds - 1;
-            timeDisplay.innerHTML = minutes + " : " + seconds;
+            let timeFormat = minutes + " : " + seconds;
+            timeDisplay.innerHTML = timeFormat;
+            document.title = timeFormat;
         }
 
     }, 1000);
-
 }
 
 
