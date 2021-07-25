@@ -3,8 +3,8 @@
  * Wait for DOM to load
  * and display Work timer mode of 25 mins as a default 
  */
-let minutes;
-let seconds;
+let minutes = 25;
+let seconds = 0;
 
 document.addEventListener("DOMContentLoaded", function() {
    
@@ -35,14 +35,14 @@ start.addEventListener("click", startFocusing);
 
 
 function startFocusing() {
-    minutes = 25;
-    seconds = 0;
-
+    minutes = 1;
     let timeDisplay = document.getElementById("countdown-clock");
     
     let interval = setInterval(function() {
-    
-        if (seconds == 0) {
+        if (minutes == 0 && seconds == 0) {
+            clearInterval(interval);
+            alert("Take a break!");
+        } else if (seconds == 0) {
             minutes = minutes - 1;
             seconds = 59;
             timeDisplay.innerHTML = minutes + " : " + seconds;
