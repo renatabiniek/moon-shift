@@ -13,6 +13,12 @@ document.addEventListener("DOMContentLoaded", function() {
     
 })
 
+//add leading zeros to numbers that only are one digit long
+
+function addLeadingZeros(seconds) {
+    return (seconds < 10) ? "0" + seconds : seconds;
+}
+
 //add event listeners for mode buttons 
 
 let modes = document.getElementsByClassName("mode");
@@ -68,6 +74,7 @@ let minutes = 25;
         } 
 
     }, 1000);
+   
 }
 
 function stopTimer() {
