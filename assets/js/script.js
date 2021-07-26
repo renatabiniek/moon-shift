@@ -5,6 +5,7 @@
  */
 let minutes = 25;
 let seconds = 0;
+let interval;
 
 let displayMins = document.getElementById("countdown-mins");
 let displaySecs = document.getElementById("countdown-secs");
@@ -32,10 +33,24 @@ let modes = document.getElementsByClassName("mode");
 
 // timer functions
 
-//start the focusing session on click of start button
-let start = document.getElementById("start-btn");
-start.addEventListener("click", startFocusing);
+//get timer buttons and add event listeners to each
 
+let timerbuttons = document.getElementsByClassName("timer-btn");
+
+for (let timerbutton of timerbuttons) {
+    timerbutton.addEventListener("click", function() {
+        if (this.getAttribute("data-status") === "start") {
+            alert("start");
+            startFocusing();
+        } else if (this.getAttribute("data-status") === "stop") {
+            alert("stop");
+        } else {
+            alert("reset")
+        }          
+    })
+}
+
+//function to start 25 minute focus session
 
 function startFocusing() {
 let minutes = 25;
@@ -75,7 +90,13 @@ let minutes = 25;
    
 }
 
+//pause the focusing session on click of stop button
+let stop = document.getElementById("stop-btn");
+stop.addEventListener("click", stopTimer);
+
 function stopTimer() {
+    clearInterval(interval);
+    console.log("you clicked stop");
 
 }
 
