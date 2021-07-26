@@ -13,12 +13,6 @@ document.addEventListener("DOMContentLoaded", function() {
     
 })
 
-//add leading zeros to numbers that only are one digit long
-
-function addLeadingZeros(seconds) {
-    return (seconds < 10) ? "0" + seconds : seconds;
-}
-
 //add event listeners for mode buttons 
 
 let modes = document.getElementsByClassName("mode");
@@ -56,20 +50,24 @@ let minutes = 25;
         } else if (seconds == 0) {
             minutes = minutes - 1;
             seconds = 59;
-            displayMins.innerHTML = minutes;
+            
             //add leading zeros to numbers that only are one digit long
+            displayMins.innerHTML = minutes  < 10 ? "0" + minutes : minutes;
             displaySecs.innerHTML = seconds < 10 ? "0" + seconds : seconds;
+            
             //display current time in the browser tab
-            let currentTime = `${minutes} : ${seconds < 10 ? "0" + seconds : seconds}`;
+            let currentTime = `${minutes  < 10 ? "0" + minutes : minutes} : ${seconds < 10 ? "0" + seconds : seconds}`;
             document.title = currentTime;
 
         } else if (seconds != 0) {
             seconds = seconds - 1;
-            displayMins.innerHTML = minutes;
+
             //add leading zeros to numbers that only are one digit long
+            displayMins.innerHTML = minutes  < 10 ? "0" + minutes : minutes;;
             displaySecs.innerHTML = seconds < 10 ? "0" + seconds : seconds;
+            
             //display current time in the browser tab
-            let currentTime = `${minutes} : ${seconds < 10 ? "0" + seconds : seconds}`;
+            let currentTime = `${minutes  < 10 ? "0" + minutes : minutes} : ${seconds < 10 ? "0" + seconds : seconds}`;
             document.title = currentTime;     
         } 
 
