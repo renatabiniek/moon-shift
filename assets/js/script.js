@@ -1,4 +1,3 @@
-
 /**
  * Wait for DOM to load
  * and display Work timer mode of 25 mins as a default 
@@ -41,16 +40,13 @@ let timerbuttons = document.getElementsByClassName("timer-btn");
     for (let timerbutton of timerbuttons) {
         timerbutton.addEventListener("click", function() {
             if (this.getAttribute("data-status") === "start") {
-            alert("start");
             clearInterval(interval);
             startFocusing();
 
         } else if (this.getAttribute("data-status") === "stop") {
-            alert("stop");
             stopTimer();
 
         } else {
-            alert("reset");
             resetTimer();
         }          
     });
@@ -102,12 +98,16 @@ function stopTimer() {
     console.log("you clicked stop");
 }
 
+// rest timer 
 function resetTimer() {
     clearInterval(interval);
     seconds = 0;
     minutes = 0;
     displayMins.innerHTML = minutes  < 10 ? "0" + minutes : minutes;
     displaySecs.innerHTML = seconds < 10 ? "0" + seconds : seconds;
+    
+    let currentTime = `${minutes  < 10 ? "0" + minutes : minutes} : ${seconds < 10 ? "0" + seconds : seconds}`;
+    document.title = currentTime;     
 }
 
 

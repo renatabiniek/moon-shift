@@ -140,7 +140,6 @@ i {
     line-height: 1.5rem;
     /*remove number from the list of items but keep the order*/
     list-style-type: none;
-    padding: 0 .8rem;
 }
 
 .modal-content {
@@ -151,6 +150,10 @@ i {
     border-radius: 5px;
     list-style-position: inside;
     font-size: .8rem;
+}
+
+.modal-text {
+    padding-left: 0.8rem;
 }
 
 .close-modal {
