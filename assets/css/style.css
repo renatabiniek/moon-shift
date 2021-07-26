@@ -112,13 +112,21 @@ i {
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    padding: 1rem;
+    padding: 1rem 2rem;
 }
 
 .logo {
     font-family: Montserrat Alternates, sans-serif;
     font-size: 2rem;
     padding:0.5rem;
+}
+
+.nav-icons {
+    padding-right: 2rem;
+}
+
+.nav-icons > li {
+    padding-left: 1rem;
 }
 
 /*style modal with instructions*/
