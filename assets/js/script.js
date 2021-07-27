@@ -25,12 +25,18 @@ let modes = document.getElementsByClassName("mode");
     
     for (let mode of modes){
         mode.addEventListener("click", function() {
-            if (this.getAttribute("data-mode") === "1500") {     
+            if (this.getAttribute("data-mode") === "1500") {
+                clearInterval(interval);     
                 alert("Time to work");
+                displayMins.innerText = focusMinutes;
             } else if (this.getAttribute("data-mode") === "300") {
+                clearInterval(interval);
                 alert("Take a short break!");
+                displayMins.innerText = `${"0" + breakMinutes}`;
             } else {
+                clearInterval(interval);
                 alert("Take a longer break!");
+                displayMins.innerText = longBreak;
             }
         });
 
@@ -101,6 +107,12 @@ function startFocusing() {
 
     }, 1000);
    
+}
+
+//break time
+
+function startBreak() {
+    
 }
 
 // pause timer
