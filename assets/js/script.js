@@ -8,7 +8,8 @@ let longBreak = 15;
 let minutes;
 let seconds = 0;
 let interval;
-let isPaused = true;
+//the timer isn't paused at the start so isPaused is false in the beginning 
+let isPaused = false;
 
 let displayMins = document.getElementById("countdown-mins");
 let displaySecs = document.getElementById("countdown-secs");
@@ -59,13 +60,18 @@ let timerbuttons = document.getElementsByClassName("timer-btn");
 //function to start a 25 minute focus session
 
 function startFocusing() {
-
-isPaused = false;
+    //check if the value of isPaused === false; if it is, change the minutes and seconds back to the orginial numbers
+    if (!isPaused) {
+        minutes = 25;
+        seconds = 0;
+    }
 
     interval = setInterval(function() {
         
         if (minutes == 0 && seconds == 0) {
             clearInterval(interval);
+            //this is set back to false as the timer has completed here and needs to be reset back to the original numbers so that another timer can be started at 25 minutes
+            isPaused = false;
             alert("Take a break!");
             document.title = "Take a break!";
 
@@ -100,7 +106,8 @@ isPaused = false;
 // pause timer
 function stopTimer() {
     clearInterval(interval);
-    isPaused;
+    //set timer to isPaused = true to prevent the timer from resetting the clock 
+    isPaused = true;
     console.log("you clicked stop");
 }
 
@@ -113,7 +120,9 @@ function resetTimer() {
     displaySecs.innerHTML = seconds < 10 ? "0" + seconds : seconds;
     
     let currentTime = `${minutes  < 10 ? "0" + minutes : minutes} : ${seconds < 10 ? "0" + seconds : seconds}`;
-    document.title = currentTime;     
+    document.title = currentTime;
+    //set to false so that the timer can reset the minutes and seconds to the orginal session time when the startFocusing function is run again
+    isPaused = false;
 }
 
 
