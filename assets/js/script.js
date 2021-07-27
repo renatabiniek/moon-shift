@@ -2,9 +2,13 @@
  * Wait for DOM to load
  * and display Work timer mode of 25 mins as a default 
  */
-let minutes = 25;
+let focusMinutes = 25;
+let breakMinutes = 5;
+let longBreak = 15;
+let minutes;
 let seconds = 0;
 let interval;
+let isPaused = true;
 
 let displayMins = document.getElementById("countdown-mins");
 let displaySecs = document.getElementById("countdown-secs");
@@ -20,7 +24,7 @@ let modes = document.getElementsByClassName("mode");
     
     for (let mode of modes){
         mode.addEventListener("click", function() {
-            if (this.getAttribute("data-mode") === "1500") {
+            if (this.getAttribute("data-mode") === "1500") {     
                 alert("Time to work");
             } else if (this.getAttribute("data-mode") === "300") {
                 alert("Take a short break!");
@@ -39,8 +43,8 @@ let timerbuttons = document.getElementsByClassName("timer-btn");
 
     for (let timerbutton of timerbuttons) {
         timerbutton.addEventListener("click", function() {
-            if (this.getAttribute("data-status") === "start") {
             clearInterval(interval);
+            if (this.getAttribute("data-status") === "start") {
             startFocusing();
 
         } else if (this.getAttribute("data-status") === "stop") {
@@ -55,8 +59,8 @@ let timerbuttons = document.getElementsByClassName("timer-btn");
 //function to start a 25 minute focus session
 
 function startFocusing() {
-    
-let minutes = 1;
+
+isPaused = false;
 
     interval = setInterval(function() {
         
@@ -66,7 +70,7 @@ let minutes = 1;
             document.title = "Take a break!";
 
         } else if (seconds == 0) {
-            minutes = minutes - 1;
+            minutes = focusMinutes - 1;
             seconds = 59;
             
             //add leading zeros to numbers that only are one digit long
@@ -93,8 +97,10 @@ let minutes = 1;
    
 }
 
+// pause timer
 function stopTimer() {
     clearInterval(interval);
+    isPaused;
     console.log("you clicked stop");
 }
 
