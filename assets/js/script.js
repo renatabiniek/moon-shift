@@ -8,11 +8,15 @@ let longBreak = 15;
 let minutes;
 let seconds = 0;
 let interval;
+
 //the timer isn't paused at the start so isPaused is false in the beginning 
 let isPaused = false;
 
-let displayMins = document.getElementById("countdown-mins");
-let displaySecs = document.getElementById("countdown-secs");
+//check if break mode button has been clicked
+let breakRunning = false;
+
+const displayMins = document.getElementById("countdown-mins");
+const displaySecs = document.getElementById("countdown-secs");
 
 //wait for the DOM to load
 document.addEventListener("DOMContentLoaded", function() {
@@ -28,21 +32,27 @@ let modes = document.getElementsByClassName("mode");
             if (this.getAttribute("data-mode") === "1500") {
                 clearInterval(interval);     
                 alert("Time to work");
-                displayMins.innerText = focusMinutes;
+                displayMins.innerText = focusMinutes < 10 ? "0" + focusMinutes : focusMinutes;
+                displaySecs.innerText = seconds < 10 ? "0" + seconds : seconds;
+
             } else if (this.getAttribute("data-mode") === "300") {
                 clearInterval(interval);
+                breakRunning = true;
                 alert("Take a short break!");
-                displayMins.innerText = `${"0" + breakMinutes}`;
+                displayMins.innerText = breakMinutes < 10 ? "0" + breakMinutes : breakMinutes;
+                displaySecs.innerText = seconds < 10 ? "0" + seconds : seconds;
+
             } else {
                 clearInterval(interval);
                 alert("Take a longer break!");
-                displayMins.innerText = longBreak;
+                displayMins.innerText = longBreak < 10 ? "0" + longBreak : longBreak;
+                displaySecs.innerText = seconds < 10 ? "0" + seconds : seconds;
             }
         });
 
     }
 
-// timer functions
+//timer functions
 
 //get timer buttons and add event listeners to each
 
@@ -51,14 +61,21 @@ let timerbuttons = document.getElementsByClassName("timer-btn");
     for (let timerbutton of timerbuttons) {
         timerbutton.addEventListener("click", function() {
             clearInterval(interval);
+
             if (this.getAttribute("data-status") === "start") {
-            startFocusing();
+                //If break button was clicked run 5 min break 
+                if (breakRunning === true) {
+                    startBreak();
+                //if break button hasn't been clicked start focusing 
+                } else if (!breakRunning) {
+                    startFocusing();
+                }
 
-        } else if (this.getAttribute("data-status") === "stop") {
-            stopTimer();
+            } else if (this.getAttribute("data-status") === "stop") {
+                stopTimer();
 
-        } else {
-            resetTimer();
+            } else {
+                resetTimer();
         }          
     });
 }
@@ -66,7 +83,7 @@ let timerbuttons = document.getElementsByClassName("timer-btn");
 //function to start a 25 minute focus session
 
 function startFocusing() {
-    //check if the value of isPaused === false; if it is, change the minutes and seconds back to the orginial numbers
+    //check if the value of isPaused === false; if it is, change the minutes and seconds back to the orginal numbers
     if (!isPaused) {
         minutes = 25;
         seconds = 0;
@@ -104,16 +121,43 @@ function startFocusing() {
             let currentTime = `${minutes  < 10 ? "0" + minutes : minutes} : ${seconds < 10 ? "0" + seconds : seconds}`;
             document.title = currentTime;     
         } 
-
     }, 1000);
-   
 }
 
 //break time
 
 function startBreak() {
-    
+
+    clearInterval(interval);
+
+    if (!isPaused) {
+        minutes = 5;
+        seconds = 0;
+    }
+
+    displayMins.innerHTML = minutes  < 10 ? "0" + minutes : minutes;
+    displaySecs.innerHTML = seconds < 10 ? "0" + seconds : seconds;
+   
+    interval = setInterval(function() {
+
+        if (seconds == 0) {
+            minutes = breakMinutes - 1;
+            seconds = 59;
+            displayMins.innerHTML = minutes  < 10 ? "0" + minutes : minutes;
+            displaySecs.innerHTML = seconds < 10 ? "0" + seconds : seconds;
+
+        } else if (seconds !=0) {
+            seconds = seconds - 1;
+            displayMins.innerHTML = minutes  < 10 ? "0" + minutes : minutes;
+            displaySecs.innerHTML = seconds < 10 ? "0" + seconds : seconds;
+
+        } else if (minutes == 0 && seconds == 0) {
+            isPaused = false;
+            alert("Back to work!");
+        }
+    }, 1000);    
 }
+
 
 // pause timer
 function stopTimer() {
