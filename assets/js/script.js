@@ -18,6 +18,8 @@ let breakRunning = false;
 //track if focusing session is active
 let isFocused = false;
 
+let longBreakRunning = false;
+
 const displayMins = document.getElementById("countdown-mins");
 const displaySecs = document.getElementById("countdown-secs");
 
@@ -32,20 +34,17 @@ let modes = document.getElementsByClassName("mode");
     
     for (let mode of modes){
         mode.addEventListener("click", function() {
-            if (this.getAttribute("data-mode") === "1500") {
+            if (this.getAttribute("data-mode") === "focus") {
 
-                if (breakRunning === false || (displayMins.innerText === 0 && displaySecs.innerText === 0)){
                     clearInterval(interval);
                     alert("Time to work");
                     displayMins.innerText = focusMinutes < 10 ? "0" + focusMinutes : focusMinutes;
                     displaySecs.innerText = seconds < 10 ? "0" + seconds : seconds;
                     console.log("time to work");
-                    console.log(isFocused);
-
-                } else (this.disabled = true);    
+                    console.log(isFocused);  
 
 
-            } else if (this.getAttribute("data-mode") === "300") {
+            } else if (this.getAttribute("data-mode") === "shortbreak") {
                
                 if (isFocused === false) {
                     clearInterval(interval);
@@ -58,10 +57,10 @@ let modes = document.getElementsByClassName("mode");
                 }
                 
             } else {
-  
                 alert("Take a longer break!");
                 displayMins.innerText = longBreak < 10 ? "0" + longBreak : longBreak;
                 displaySecs.innerText = seconds < 10 ? "0" + seconds : seconds;
+                longBreakRunning = true;
                 console.log("long break");
                 console.log(isFocused);
             }
@@ -78,14 +77,15 @@ let timerbuttons = document.getElementsByClassName("timer-btn");
     for (let timerbutton of timerbuttons) {
         timerbutton.addEventListener("click", function() {
 
-
             if (this.getAttribute("data-status") === "start") {
                 //If the break button was clicked run 5 min break 
                 if (breakRunning === true) {
                     startBreak();
                     console.log("start break")
-                    console.log(isFocused);
-                    
+                } else if (longBreakRunning === true) {
+                    longbreak();
+                    console.log("start long break")
+
                 //if the break button wasn't clicked start focusing 
                 } else if (!breakRunning) {
                     startFocusing();
@@ -126,6 +126,7 @@ function startFocusing() {
             alert("Take a break!");
             document.title = "Take a break!";
             isFocused = false;
+            console.log(isFocused);
 
         } else if (seconds == 0) {
             minutes = focusMinutes - 1;
@@ -140,6 +141,7 @@ function startFocusing() {
             document.title = currentTime;
 
             isFocused = true;
+            console.log(isFocused);
 
         } else if (seconds != 0) {
             seconds = seconds - 1;
@@ -153,6 +155,7 @@ function startFocusing() {
             document.title = currentTime;     
 
             isFocused = true;
+            console.log(isFocused);
         } 
     }, 1000);
 }
@@ -162,8 +165,6 @@ function startFocusing() {
  */
 
 function startBreak() {
-
-    clearInterval(interval);
 
     if (!isPaused) {
         minutes = 5;
@@ -196,6 +197,36 @@ function startBreak() {
     }, 1000);    
 }
 
+/**
+ * start a longer 15 minute break 
+ */
+
+function longbreak() {
+ 
+        minutes = 15;
+        seconds = 0;
+    
+    interval = setInterval(function() {
+
+        if (seconds == 0) {
+            minutes = longBreak - 1;
+            seconds = 59;
+            displayMins.innerHTML = minutes  < 10 ? "0" + minutes : minutes;
+            displaySecs.innerHTML = seconds < 10 ? "0" + seconds : seconds;
+            breakRunning = true;
+
+        } else if (seconds !=0) {
+            seconds = seconds - 1;
+            displayMins.innerHTML = minutes  < 10 ? "0" + minutes : minutes;
+            displaySecs.innerHTML = seconds < 10 ? "0" + seconds : seconds;
+            breakRunning = true;
+
+        } else if (minutes == 0 && seconds == 0) {
+            alert("Back to work!");
+            breakRunning = false;
+        }
+    }, 1000);
+}
 
 // pause timer
 function stopTimer() {
@@ -203,13 +234,16 @@ function stopTimer() {
     //set timer to isPaused = true to prevent the timer from resetting the clock 
     isPaused = true;
     breakRunning = false;
+    isFocused = false;
     console.log("you clicked stop");
+    console.log(isFocused);
 }
 
 // reset timer 
 function resetTimer() {
     clearInterval(interval);
     breakRunning = false;
+    isFocused = false;
     seconds = 0;
     minutes = 0;
     displayMins.innerHTML = minutes  < 10 ? "0" + minutes : minutes;
@@ -219,6 +253,7 @@ function resetTimer() {
     document.title = currentTime;
     //set to false so that the timer can reset the minutes and seconds to the orginal session time when the startFocusing function is run again
     isPaused = false;
+    console.log(isFocused);
 }
 
 
